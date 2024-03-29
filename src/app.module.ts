@@ -13,6 +13,7 @@ import { MessageModule } from './message/message.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { ExceptionFilter } from './utils/filter/exception.filter';
 import { ResponseInterceptor } from './utils/interceptors/response.interceptor';
+import { VacationModule } from './vacation/vacation.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ResponseInterceptor } from './utils/interceptors/response.interceptor';
     AuthModule,
     TimezoneModule,
     MessageModule,
+    VacationModule,
   ],
   controllers: [AppController],
   providers: [
