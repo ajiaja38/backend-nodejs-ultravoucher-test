@@ -22,7 +22,7 @@ import { TokenManagerService } from './token-manager.service';
       global: true,
       secret: jwtConstant.accessTokenSecret,
       signOptions: {
-        expiresIn: '5m',
+        expiresIn: '3h',
       },
     }),
     MongooseModule.forFeature([{ name: Auth.name, schema: AuthSchema }]),

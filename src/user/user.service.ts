@@ -71,9 +71,11 @@ export class UserService {
     const totalPages: number = Math.ceil(totalData / limit);
     const data: User[] = await this.userModel
       .find(query)
-      .skip((page - 1) * limit);
+      .skip((page - 1) * limit)
+      .sort({ createdAt: -1 });
 
     this.messageService.setMessage('Get all users successfully');
+
     return {
       totalPages,
       page,
