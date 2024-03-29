@@ -27,7 +27,7 @@ export class RoleGuard implements CanActivate {
 
     if (!this.matchRoles(roles, user.role)) {
       throw new ForbiddenException(
-        'Anda tidak memiliki izin untuk mengakses source ini.',
+        'You do not have permission to access this resource',
       );
     }
 
