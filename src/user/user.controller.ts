@@ -25,14 +25,14 @@ export class UserController {
 
   @Post()
   async createUserHandler(@Body() createUserDto: CreateUserDto): Promise<User> {
-    return this.userService.createUser(createUserDto, Role.USER);
+    return await this.userService.createUser(createUserDto, Role.USER);
   }
 
   @Post('admin')
   async createAdminHandler(
     @Body() createUserDto: CreateUserDto,
   ): Promise<User> {
-    return this.userService.createUser(createUserDto, Role.ADMIN);
+    return await this.userService.createUser(createUserDto, Role.ADMIN);
   }
 
   @Get()
@@ -48,7 +48,7 @@ export class UserController {
   @Get(':id')
   @UseGuards(JwtAuthGuard)
   async getUserByIdHandler(@Param('id') id: string): Promise<User> {
-    return this.userService.getUserById(id);
+    return await this.userService.getUserById(id);
   }
 
   @Put(':id')
@@ -56,7 +56,7 @@ export class UserController {
     @Param('id') id: string,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<string> {
-    return this.userService.updateUser(id, updateUserDto);
+    return await this.userService.updateUser(id, updateUserDto);
   }
 
   @Put(':id/password')
@@ -64,11 +64,11 @@ export class UserController {
     @Param('id') id: string,
     @Body() updatePasswordDto: UpdatePasswordDto,
   ): Promise<User> {
-    return this.userService.updatePassword(id, updatePasswordDto);
+    return await this.userService.updatePassword(id, updatePasswordDto);
   }
 
   @Delete(':id')
   async deleteUserHandler(@Param('id') id: string): Promise<string> {
-    return this.userService.deleteUser(id);
+    return await this.userService.deleteUser(id);
   }
 }

@@ -28,13 +28,13 @@ export class VacationController {
   async createVacationHandler(
     @Body() vacationDto: VacationDto,
   ): Promise<Vacation> {
-    return this.vacationService.createVacation(vacationDto);
+    return await this.vacationService.createVacation(vacationDto);
   }
 
   @Get()
   @Roles(Role.ADMIN, Role.USER)
   async getAllVacationHandler(): Promise<Vacation[]> {
-    return this.vacationService.getAllVacations();
+    return await this.vacationService.getAllVacations();
   }
 
   @Get('paginate')
@@ -44,13 +44,17 @@ export class VacationController {
     @Query('limit') limit: number,
     @Query('search') search: string,
   ): Promise<PaginationResponseInterface<Vacation>> {
-    return this.vacationService.getAllVacationPaginate(page, limit, search);
+    return await this.vacationService.getAllVacationPaginate(
+      page,
+      limit,
+      search,
+    );
   }
 
   @Get(':id')
   @Roles(Role.ADMIN, Role.USER)
   async getVacationByIdHandler(@Param('id') id: string): Promise<Vacation> {
-    return this.vacationService.getVacationById(id);
+    return await this.vacationService.getVacationById(id);
   }
 
   @Put(':id')
@@ -59,12 +63,12 @@ export class VacationController {
     @Param('id') id: string,
     @Body() vacationDto: VacationDto,
   ): Promise<Vacation> {
-    return this.vacationService.updateVacation(id, vacationDto);
+    return await this.vacationService.updateVacation(id, vacationDto);
   }
 
   @Delete('delete/:id')
   @Roles(Role.ADMIN)
   async deleteVacationHandler(@Param('id') id: string): Promise<string> {
-    return this.vacationService.deleteVacation(id);
+    return await this.vacationService.deleteVacation(id);
   }
 }
